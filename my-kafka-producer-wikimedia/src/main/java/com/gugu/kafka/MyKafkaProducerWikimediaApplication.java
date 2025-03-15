@@ -24,10 +24,12 @@ public class MyKafkaProducerWikimediaApplication implements CommandLineRunner {
 	public static void main(String[] args) {
 		SpringApplication.run(MyKafkaProducerWikimediaApplication.class, args);
 	}
-
+	@Value(value="${wikimedia.url}")
+	String wikimediaUrl;
+	
 	@Override
 	public void run(String... args) throws InterruptedException {
-		String url = "https://stream.wikimedia.org/v2/stream/recentchange";
+		String url = wikimediaUrl;
 
 		BackgroundEventSource.Builder builder = new BackgroundEventSource.Builder(
 				wikimediaEventHandler,

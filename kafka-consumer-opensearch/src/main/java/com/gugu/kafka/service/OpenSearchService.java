@@ -29,10 +29,13 @@ public class OpenSearchService {
     private RestHighLevelClient openSearchClient;
     private BulkRequest bulkRequest = new BulkRequest();
 
+    @Value(value="${opensearch.host}")
+    String opensearchHost;
     public OpenSearchService() {
         // we build a URI from the connection string
         RestHighLevelClient restHighLevelClient;
-        URI connUri = URI.create("http://localhost:9200");
+        URI connUri = URI.create("http://" + opensearchHost);
+        
         log.info("Connecting to OpenSearch at " + connUri.getHost() + ":" + connUri.getPort());
         // extract login information if it exists
         String userInfo = connUri.getUserInfo();

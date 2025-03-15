@@ -21,7 +21,8 @@ public class KafkaMessageListener {
     @Autowired
     private KafkaMessageProcessingService messageProcessingService;
 
-    @KafkaListener(topics = "wikimedia-topic", groupId = "gugu-group", containerFactory = "kafkaListenerContainerFactory", autoStartup = "true")
+
+    @KafkaListener(topics = "wikimedia-topic", groupId = "a-consumer-group", containerFactory = "kafkaListenerContainerFactory", autoStartup = "true")
     public void listenTopicWikimedia(String message, Acknowledgment acknowledgment) {
         log.info("Recebemos uma mensagem, processando...");
         try {
